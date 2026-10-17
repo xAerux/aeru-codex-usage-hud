@@ -74,6 +74,7 @@ The API-equivalent cost is an indicative calculation, **not** an OpenAI subscrip
 ## Before publishing
 
 This repository deliberately ignores Codex session data, JSONL files, databases, environment files, and build artifacts. Before publishing to GitHub or npm, re-check the tracked file list and add an anonymized screenshot if desired.
+<img width="1686" height="1242" alt="CODEX MONITOR" src="https://github.com/user-attachments/assets/c5c59363-a072-4ec2-b361-bad6c7852265" />
 
 ## License
 
