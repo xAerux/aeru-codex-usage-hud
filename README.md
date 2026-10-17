@@ -1,5 +1,5 @@
 # AERU CODEX USAGE HUD
-
+<img width="1686" height="1242" alt="CODEX MONITOR" src="https://github.com/user-attachments/assets/c5c59363-a072-4ec2-b361-bad6c7852265" />
 > A compact, local-first dashboard for usage statistics found in your local OpenAI Codex history.
 
 <!-- Screenshot placeholder: add an anonymized dashboard screenshot here before public release. -->
@@ -71,7 +71,6 @@ The API-equivalent cost is an indicative calculation, **not** an OpenAI subscrip
 - Session deduplication uses response IDs when available and session IDs when assembling the dashboard.
 - Project attribution comes from recorded working directories; sessions without one are grouped as `Unattributed`.
 
-<img width="1686" height="1242" alt="CODEX MONITOR" src="https://github.com/user-attachments/assets/c5c59363-a072-4ec2-b361-bad6c7852265" />
 
 ## License
 
