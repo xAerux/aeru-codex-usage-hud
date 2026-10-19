@@ -12,6 +12,13 @@ This app reads session metadata and token-usage records from the current user's 
 
 - Node.js 18 or newer
 - A local Codex installation with a `.codex` history folder
+- 
+Your local CODEX dashboard
+Use existing Codex history
+No credentials to configure
+No extra API charges for tracking
+No API key to accidentally leak
+Can process usage history locally
 
 ## Run locally
 
