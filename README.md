@@ -12,8 +12,7 @@ This app reads session metadata and token-usage records from the current user's 
 
 - Node.js 18 or newer
 - A local Codex installation with a `.codex` history folder
-- 
-No API keys. No additional subscriptions. No cloud account.
+- No API keys. No additional subscriptions. No cloud account.
 CODEX reads your existing local Codex usage history and turns it into a real-time visual dashboard with token statistics, project breakdowns, model usage, cache performance, and estimated API-equivalent costs.
 
 ## Run locally
