@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "check": "node --check server.js && node --check usage.js && node --test usage.test.js"
+    "check": "node --check server.js && node --check usage.js && node --check codex-account-usage.js && node --check local-ollama-usage.js && node --check public/app.js && node --test usage.test.js"
   },
   "license": "MIT",
   "engines": {

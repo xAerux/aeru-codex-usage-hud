@@ -280,13 +280,16 @@
     state.view = view;
     state.mode = view.mode || 'live';
     $('wordmark').textContent = view.wordmark || 'CODEX';
-    $('fine').textContent = view.fine || '';
+    $('fine').textContent = view.accountUsage?.available
+      ? 'COMBINED TOTAL ADDS ONLINE CODEX ACCOUNT USAGE AND LOCAL OLLAMA TOKENS.'
+      : view.fine || '';
     $('range').textContent = state.week && view.weeks ? (view.weeks.find((w) => w.offset === state.week)?.range || view.rangeLabel || '') : (view.rangeLabel || '');
     $('weekLabel').textContent = (view.weeks || []).find((w) => w.offset === state.week)?.title || view.weekPreset || 'Last 7 days';
     const host = view.mode === 'sample' ? '127.0.0.1:8787' : (view.endpoint && view.endpoint !== 'preview' ? view.endpoint : location.host);
     $('host').textContent = host || '127.0.0.1:8787';
     const order = ['today', 'total', 'cost', 'cache', 'average'];
-    const labels = ["TODAY'S TOKENS", 'HISTORICAL TOTAL', 'HISTORICAL ESTIMATED AMOUNT', 'CACHE HIT RATE', 'AVERAGE DAILY'];
+    const totalLabel = view.accountUsage?.available ? 'COMBINED TOTAL' : (view.ollamaUsage?.totalTokens ? 'LOCAL TOTAL' : 'LOCAL HISTORY TOTAL');
+    const labels = ["TODAY'S TOKENS", totalLabel, 'HISTORICAL ESTIMATED AMOUNT', 'CACHE HIT RATE', 'AVERAGE DAILY'];
     const icons = ['coins', 'dollar', 'chart', 'target', 'calendar'];
     $('kpis').innerHTML = order.map((key, i) => {
       const card = view.kpis[key];
@@ -396,7 +399,7 @@
       return;
     } else {
       $('fine').textContent = 'SCANNING LOCAL CODEX HISTORY…';
-      $('foot').textContent = 'Reading ~/.codex on this computer. Nothing is uploaded.';
+      $('foot').textContent = 'Reading local Codex session files. If available, the signed-in Codex app-server also requests your account usage summary from OpenAI.';
     }
     load();
     window.__hudDestroy = () => {

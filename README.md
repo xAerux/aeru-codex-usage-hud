@@ -1,14 +1,19 @@
-<img width="1686" height="1242" alt="CODEX MONITOR" src="https://github.com/user-attachments/assets/3fe55354-994a-4bcf-b7ba-e1c0507c3162" />
 # CODEX TOKEN USAGE DASHBOARD
 
 Local neon HUD for Codex token history that already lives on this computer.
 
-Codex reads `~/.codex/sessions` and `archived_sessions`. Turns are summed from `last_token_usage` (the per-turn delta). Cumulative `total_token_usage` is not added on top of that.
+Codex reads `~/.codex/sessions` and `archived_sessions`. Turns are summed from `last_token_usage` (the per-turn delta). Cumulative `total_token_usage` is not added on top of that. When a compatible Codex app-server and a ChatGPT sign-in are available, the HUD requests the account lifetime summary through Codex's `account/usage/read` method. If the local Qwen/Ollama adapter is installed at `~/.codex/local14b-tool-adapter`, the HUD also reads token counts from its `captures` folder. The combined total is paid ChatGPT Codex account lifetime plus local Ollama usage. Codex session history is shown for project and model details, but is not added to the combined total because its GPT sessions overlap the online account count.
 
-Nothing is uploaded. The server binds to `127.0.0.1` only. Prompts are not shown.
+The server binds to `127.0.0.1` only. Local session files, adapter captures, and prompts stay on the computer. The optional account summary request is sent by the local Codex app-server to OpenAI using the user's existing Codex sign-in. If Codex is missing, signed out, or too old to support the method, the HUD falls back to local history and adapter totals where available. Adapter captures include model response content; the HUD parses only numeric usage fields and model identifiers.
 
 ## Run
-CODEX Monitor Shortcut
+
+On Windows, double-click **Start Dashboard.bat** in this folder. Do not open `public\index.html` by itself. That file is only the page. The `.bat` starts the program and opens the dashboard.
+
+You need Node.js 18 or newer: https://nodejs.org
+
+Or from this folder:
+
 ```bash
 npm start
 ```

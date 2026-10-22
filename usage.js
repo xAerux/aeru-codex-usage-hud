@@ -639,7 +639,7 @@ export function toView(scan, meta) {
   const models = [...scan.models.entries()].sort((a, b) => b[1].total - a[1].total);
   const topProject = projects[0];
 
-  const projectRows = projects.slice(0, 3).map(([name, value], index) => ({
+  const projectRows = projects.map(([name, value], index) => ({
     rank: index + 1,
     name,
     detail: `${sentenceTokens(value.total)} · ${money(value.cost)}`,

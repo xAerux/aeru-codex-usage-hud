@@ -9,6 +9,8 @@ dotnet publish (Join-Path $PSScriptRoot 'DesktopShell.csproj') -c Release -o $di
 Copy-Item -LiteralPath $node -Destination (Join-Path $runtime 'node.exe') -Force
 Copy-Item -LiteralPath (Join-Path $root 'server.js') -Destination $dist -Force
 Copy-Item -LiteralPath (Join-Path $root 'usage.js') -Destination $dist -Force
+Copy-Item -LiteralPath (Join-Path $root 'codex-account-usage.js') -Destination $dist -Force
+Copy-Item -LiteralPath (Join-Path $root 'local-ollama-usage.js') -Destination $dist -Force
 Copy-Item -LiteralPath (Join-Path $root 'public') -Destination $dist -Recurse -Force
 Copy-Item -LiteralPath (Join-Path $root 'LICENSE') -Destination $dist -Force
 Copy-Item -LiteralPath (Join-Path $root 'assets') -Destination $dist -Recurse -Force
