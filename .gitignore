@@ -1,15 +1,13 @@
 node_modules/
-dist/
+*.log
+.DS_Store
 .env
-.env.*
-.codex/
 sessions/
-archived_sessions/
 *.jsonl
 *.sqlite
 *.db
-npm-debug.log*
-.DS_Store
-Thumbs.db
-coverage/
-*.log
+
+# Desktop build outputs
+desktop-shell/bin/
+desktop-shell/obj/
+dist-desktop/

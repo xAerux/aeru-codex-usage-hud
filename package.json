@@ -1,34 +1,16 @@
 {
   "name": "aeru-codex-usage-hud",
-  "version": "1.0.0",
-  "description": "A local-first browser dashboard for visualizing OpenAI Codex token usage.",
-  "type": "commonjs",
+  "version": "0.2.0",
+  "description": "Local neon dashboard for Codex token history.",
+  "type": "module",
   "main": "server.js",
   "bin": {
     "aeru-codex-usage-hud": "./server.js"
   },
-  "files": [
-    "server.js",
-    "usage.js",
-    "public/",
-    "README.md",
-    "LICENSE"
-  ],
   "scripts": {
     "start": "node server.js",
-    "lint": "node --check server.js && node --check usage.js",
-    "test": "node --test test/*.test.js",
-    "check": "npm run lint && npm run test",
-    "build": "npm run check"
+    "check": "node --check server.js && node --check usage.js && node --test usage.test.js"
   },
-  "keywords": [
-    "codex",
-    "usage",
-    "local-first",
-    "dashboard",
-    "openai",
-    "cli"
-  ],
   "license": "MIT",
   "engines": {
     "node": ">=18"

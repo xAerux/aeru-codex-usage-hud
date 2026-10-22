@@ -1,79 +1,46 @@
-# AERU CODEX USAGE HUD
-<img width="1686" height="1242" alt="CODEX MONITOR" src="https://github.com/user-attachments/assets/c5c59363-a072-4ec2-b361-bad6c7852265" />
-> A compact, local-first dashboard for usage statistics found in your local OpenAI Codex history.
+# CODEX TOKEN USAGE DASHBOARD
 
-<!-- Screenshot placeholder: add an anonymized dashboard screenshot here before public release. -->
+Local neon HUD for Codex token history that already lives on this computer.
 
-## Privacy first
+Codex reads `~/.codex/sessions` and `archived_sessions`. Turns are summed from `last_token_usage` (the per-turn delta). Cumulative `total_token_usage` is not added on top of that.
 
-This app reads session metadata and token-usage records from the current user's `%USERPROFILE%\.codex` folder. It runs an HTTP server bound only to `127.0.0.1`, makes no network requests, has no telemetry or analytics, and never uploads, syncs, or modifies Codex data. Prompts and session text are not displayed in the dashboard.
+Nothing is uploaded. The server binds to `127.0.0.1` only. Prompts are not shown.
 
-## Requirements
+## Run
 
-- Node.js 18 or newer
-- A local Codex installation with a `.codex` history folder
-- No API keys. No additional subscriptions. No cloud account.
-CODEX reads your existing local Codex usage history and turns it into a real-time visual dashboard with token statistics, project breakdowns, model usage, cache performance, and estimated API-equivalent costs.
+On Windows, double-click **Start Dashboard.bat** in this folder. Do not open `public\index.html` by itself. That file is only the page. The `.bat` starts the program and opens the dashboard.
 
-## Run locally
+You need Node.js 18 or newer: https://nodejs.org
 
-From this project folder:
+Or from this folder:
 
-```powershell
+```bash
 npm start
 ```
 
-The dashboard opens at `http://127.0.0.1:8787`. If that port is in use, the app tries the next available port up to `8787 + 9`.
+Opens `http://127.0.0.1:8787`. If that port is taken, the next free port up to +9 is used.
 
-Once published to npm, the intended launch command is:
-
-```powershell
-npx aeru-codex-usage-hud
-```
-
-No package has been published by this repository.
-
-## Development
-
-```powershell
+```bash
+npm start -- --no-open
 npm run check
-node server.js --no-open
 ```
 
-Set `AERU_CODEX_DIR` only if automatic discovery of `%USERPROFILE%\.codex` is not appropriate:
+`npm start -- --sample` shows the reference layout even when both folders are empty.
 
-```powershell
-$env:AERU_CODEX_DIR = 'D:\other-profile\.codex'
-npm start
+## Paths
+
+```bash
+# Windows PowerShell
+$env:AERU_CODEX_DIR = "$env:USERPROFILE\.codex"
+
+# macOS / Linux
+AERU_CODEX_DIR="$HOME/.codex" npm start
 ```
 
-## What it reads
+## Money
 
-The parser inspects only local `sessions/**/*.jsonl` and `archived_sessions/**/*.jsonl` rollout files when present. It derives token totals, input/output/cache counts, dates, model labels, and the final folder name of a workspace. Malformed records are skipped safely.
-
-It does **not** read or publish SQLite databases, authentication data, API keys, prompts, assistant messages, or full filesystem paths for normal dashboard display.
-
-## Dashboard
-
-- Lifetime total, input, output, cache rate, estimated API-equivalent cost, and daily average
-- A rolling seven-calendar-day chart with weekday-and-date labels and hover totals
-- The top three projects only
-- Model proportions directly below projects
-- Four concise lifetime highlights
-- A manual refresh that rescans only the local machine
-
-## Cost estimate disclaimer
-
-The API-equivalent cost is an indicative calculation, **not** an OpenAI subscription bill or invoice. It uses a clearly defined reference rate table in `usage.js` (uncached input $2.00/M, cached input $0.20/M, output $8.00/M) and may differ from current, historical, bundled, or model-specific pricing. Review and adjust that table before relying on it for financial decisions.
-
-## Known limitations
-
-- Local Codex rollout formats can change. The parser intentionally ignores records it cannot safely interpret.
-- Usage is based on available local history, not an account-wide cloud ledger.
-- Session deduplication uses response IDs when available and session IDs when assembling the dashboard.
-- Project attribution comes from recorded working directories; sessions without one are grouped as `Unattributed`.
-
+Dollar amounts are estimates from public API list prices (October 2026), not your ChatGPT or xAI subscription invoice. The yen figure is a fixed ×7.20 CNY reference so the board can show both currencies. Unknown models fall back to $2 / $0.20 cached / $8 per million tokens.
 
 ## License
 
-[MIT](LICENSE)
+MIT

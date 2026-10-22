@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType><TargetFramework>net9.0-windows</TargetFramework><UseWindowsForms>true</UseWindowsForms>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier><SelfContained>true</SelfContained><PublishSingleFile>false</PublishSingleFile>
+    <ApplicationIcon>..\assets\codex-monitor.ico</ApplicationIcon><ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>CODEX Monitor</AssemblyName><RootNamespace>Aeru.CodexUsageHud.Desktop</RootNamespace>
+    <Version>1.0.0</Version><Product>CODEX Token Usage Dashboard</Product><Company>Aeru</Company>
+    <Copyright>Copyright © Aeru</Copyright><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+  <ItemGroup><PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4258.31" /></ItemGroup>
+</Project>
