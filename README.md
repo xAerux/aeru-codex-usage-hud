@@ -1,3 +1,4 @@
+<img width="1686" height="1242" alt="CODEX MONITOR" src="https://github.com/user-attachments/assets/3fe55354-994a-4bcf-b7ba-e1c0507c3162" />
 # CODEX TOKEN USAGE DASHBOARD
 
 Local neon HUD for Codex token history that already lives on this computer.
