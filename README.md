@@ -8,13 +8,7 @@ Codex reads `~/.codex/sessions` and `archived_sessions`. Turns are summed from `
 Nothing is uploaded. The server binds to `127.0.0.1` only. Prompts are not shown.
 
 ## Run
-
-On Windows, double-click **Start Dashboard.bat** in this folder. Do not open `public\index.html` by itself. That file is only the page. The `.bat` starts the program and opens the dashboard.
-
-You need Node.js 18 or newer: https://nodejs.org
-
-Or from this folder:
-
+CODEX Monitor Shortcut
 ```bash
 npm start
 ```
