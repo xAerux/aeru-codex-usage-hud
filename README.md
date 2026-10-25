@@ -1,5 +1,6 @@
+
 <p align="center">
-  <img src="assets/codex-monitor-master.png" width="200" alt="CODEX Monitor logo">
+<img width="1686" height="1242" alt="ChatGPT Image Oct 16, 2026, 04_38_30 AM" src="https://github.com/user-attachments/assets/47c474c1-3a56-4961-8241-c092c60ae2b4" />
 </p>
 
 <h1 align="center">⚡ AERU CODEX USAGE HUD</h1>
