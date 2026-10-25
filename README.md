@@ -10,12 +10,10 @@
   A Windows AI Usage Utility by Aeru Creations
 </p>
 
-<p align="center">
-  <img alt="Version 0.2.0" src="https://img.shields.io/badge/version-0.2.0-00E5FF?style=for-the-badge">
-  <img alt="Platform Windows" src="https://img.shields.io/badge/platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white">
-  <img alt="License MIT" src="https://img.shields.io/badge/license-MIT-FFD700?style=for-the-badge&logoColor=black">
-  <img alt="Status unreleased" src="https://img.shields.io/badge/status-released-6E7681?style=for-the-badge">
-</p>
+![Version](https://img.shields.io/badge/Version-1.0.2-00CED1?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-Windows-0078D4?style=for-the-badge&logo=windows)
+![License](https://img.shields.io/badge/License-MIT-gold?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Released-brightgreen?style=for-the-badge)
 
 ---
 
