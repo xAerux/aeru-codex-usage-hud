@@ -43,49 +43,26 @@ Point the HUD at a different Codex folder with the `AERU_CODEX_DIR` environment 
 
 ## 🚀 Installation
 
-This repository does not include a prebuilt installer. Choose one of the two methods below.
+1. Download **`CodexUsageHUD-Setup-v0.2.0.exe`** from the [`releases`](releases/) folder of this repository.
+2. Double-click the installer.
+3. Follow the Windows setup prompts.
+4. Launch **Codex Usage HUD** from the Desktop or Start Menu.
 
-### Option 1: Run from the folder (any Windows PC)
+THAT'S IT! 🚀
 
-1. Install **Node.js 18 or newer** from https://nodejs.org.
-2. Double-click **`Start Dashboard.bat`** in this folder. It starts the local server and opens the dashboard.
+You do not need Node.js, npm, or PowerShell. The installer includes the Node.js runtime and the .NET runtime that the app needs. Microsoft Edge WebView2 Runtime is the only Microsoft prerequisite, and Windows 11 normally includes it.
 
-Or, from a terminal in this folder:
+To remove it, use **Apps & features** in Windows Settings. Uninstalling removes the program files and shortcuts. It keeps your Codex folder and the app's WebView2 data.
 
-```bash
-npm start
-```
+### For maintainers
 
-This opens `http://127.0.0.1:8787`. If that port is busy, the next free port up to +9 is used.
+Build the packaged app, then the setup file:
 
-```bash
-npm start -- --no-open
-npm start -- --sample
-```
-
-`--no-open` starts the server without opening a browser. `--sample` shows the reference layout, even when your Codex folders are empty.
-
-### Option 2: Desktop app (Windows, native window)
-
-The desktop shell lives in `desktop-shell/`. From the project root, build the packaged app with:
-
-```bash
+```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\desktop-shell\Build-Desktop.ps1
-```
-
-The packaged folder `dist-desktop/` is generated locally by that script and is not stored in this repository.
-
-- Run `dist-desktop\CODEX Monitor.exe` directly, or
-- Double-click `Setup-CODEX-Monitor.cmd` inside that folder to install for your Windows user, with Desktop and Start Menu shortcuts.
-- To remove an installed copy, run `Uninstall-CODEX-Monitor.ps1` from the installed folder. It removes the app files and shortcuts, and leaves your `.codex` folder alone.
-
-### Requirements
-
-- **Windows** (the desktop app and the installer scripts are Windows-only).
-- **Node.js 18+** for Option 1. The desktop package carries its own Node runtime.
-- **Microsoft Edge WebView2 Runtime** for the desktop app. Windows 11 normally includes it; on Windows 10 install it once from Microsoft.
-- **Optional:** the Codex CLI, signed in with ChatGPT, for the online account summary.
-- **Optional:** the local Qwen/Ollama adapter, for local Ollama totals.
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\packaging\build-installer.ps1 -Makensis <path to makensis.exe>
+```n
+The setup file is written to `releases\`. Requires the .NET 9 SDK and NSIS.
 
 ## 🛠️ Paths
 
@@ -114,7 +91,6 @@ AERU_CODEX_DIR="$HOME/.codex" npm start
 - 🧩 **Claude Code usage is not tracked** by this HUD. It covers Codex and local Ollama.
 - 🧪 **Unknown models** use a fallback rate of $2 input, $0.20 cached input, and $8 output per million tokens.
 - 🔏 **Not code-signed.** The packaged desktop app is unsigned, so Windows may show a security warning. Only run it from a source you trust.
-- 🏷️ **Version metadata.** The desktop shell's project file still carries version 1.0.0 while this release is 0.2.0. It will be aligned in the next package.
 - 🪙 **The ¥ figure** is a fixed reference (CNY 7.20 per USD), not a live exchange rate.
 
 ## 🐛 Feedback and Bug Reports
@@ -123,7 +99,7 @@ Found a bug, or have an idea?
 
 Open an issue in this repository and include:
 
-- Your Windows version and Node.js version (if you used Option 1)
+- Your Windows version and Node.js version (if you built from source)
 - The steps that lead to the problem
 - Whether you used `--sample` or your real Codex folder
 

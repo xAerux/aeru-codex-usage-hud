@@ -11,3 +11,4 @@ sessions/
 desktop-shell/bin/
 desktop-shell/obj/
 dist-desktop/
+packaging/stage/

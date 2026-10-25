@@ -4,7 +4,7 @@
     <RuntimeIdentifier>win-x64</RuntimeIdentifier><SelfContained>true</SelfContained><PublishSingleFile>false</PublishSingleFile>
     <ApplicationIcon>..\assets\codex-monitor.ico</ApplicationIcon><ApplicationManifest>app.manifest</ApplicationManifest>
     <AssemblyName>CODEX Monitor</AssemblyName><RootNamespace>Aeru.CodexUsageHud.Desktop</RootNamespace>
-    <Version>1.0.0</Version><Product>CODEX Token Usage Dashboard</Product><Company>Aeru</Company>
+    <Version>0.2.0</Version><Product>CODEX Token Usage Dashboard</Product><Company>Aeru</Company>
     <Copyright>Copyright © Aeru</Copyright><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
