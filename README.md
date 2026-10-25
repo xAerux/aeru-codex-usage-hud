@@ -8,7 +8,7 @@
 
 **Windows Desktop Application | Official Release: v1.0.1**
 
-![Aerus AI Usage HUD](./screenshots/aerus-ai-usage-hud.png)
+![Aerus AI Usage HUD]
 
 Ever wondered how many tokens you've burned through while building your next big idea? 😂
 
