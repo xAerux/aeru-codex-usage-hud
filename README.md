@@ -14,7 +14,7 @@
   <img alt="Version 0.2.0" src="https://img.shields.io/badge/version-0.2.0-00E5FF?style=for-the-badge">
   <img alt="Platform Windows" src="https://img.shields.io/badge/platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white">
   <img alt="License MIT" src="https://img.shields.io/badge/license-MIT-FFD700?style=for-the-badge&logoColor=black">
-  <img alt="Status unreleased" src="https://img.shields.io/badge/status-unreleased-6E7681?style=for-the-badge">
+  <img alt="Status unreleased" src="https://img.shields.io/badge/status-released-6E7681?style=for-the-badge">
 </p>
 
 ---
