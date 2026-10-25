@@ -1,347 +1,164 @@
-<img width="1686" height="1242" alt="ChatGPT Image Oct 16, 2026, 04_38_30 AM" src="https://github.com/user-attachments/assets/f760f5fa-883b-4b19-b917-f74c9938f0c5" />
+<p align="center">
+  <img src="assets/codex-monitor-master.png" width="200" alt="CODEX Monitor logo">
+</p>
 
+<h1 align="center">⚡ AERU CODEX USAGE HUD</h1>
 
-# ⚡ AERUS AI USAGE HUD
+<p align="center">
+  <b>📊 Your Codex Tokens. Your Usage. Your Dashboard.</b><br>
+  A Windows AI Usage Utility by Aeru Creations
+</p>
 
-![Version](https://img.shields.io/badge/Version-1.0.1-00CED1?style=for-the-badge)
-![Platform](https://img.shields.io/badge/Platform-Windows-0078D4?style=for-the-badge&logo=windows)
-![License](https://img.shields.io/badge/License-MIT-gold?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Released-brightgreen?style=for-the-badge)
-
-### 📊 Your AI Tokens. Your Dashboard. Your Data.
-
-**Created by Aeru Creations**
-
-**Windows Desktop Application | Official Release: v1.0.1**
-
-
-Ever wondered how many tokens you've burned through while building your next big idea? 😂
-
-Maybe you're coding an entire application, experimenting with local AI models, or just wondering where the hell all those tokens went.
-
-**Aerus AI Usage HUD** was built to answer that question.
-
-Instead of digging through scattered usage logs, switching between tools, and trying to calculate everything yourself, this application brings supported usage from **OpenAI Codex, Claude Code, and Ollama** together in one futuristic Windows dashboard.
-
-No complicated analytics subscription. No unnecessary cloud dashboard. Just a powerful little desktop application designed to help you understand your AI usage.
-
-**Because if we're going to burn through billions of tokens, we might as well know where they went.** 😂🚀
+<p align="center">
+  <img alt="Version 0.2.0" src="https://img.shields.io/badge/version-0.2.0-00E5FF?style=for-the-badge">
+  <img alt="Platform Windows" src="https://img.shields.io/badge/platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white">
+  <img alt="License MIT" src="https://img.shields.io/badge/license-MIT-FFD700?style=for-the-badge&logoColor=black">
+  <img alt="Status unreleased" src="https://img.shields.io/badge/status-unreleased-6E7681?style=for-the-badge">
+</p>
 
 ---
 
-## ✨ Features
+Ever wondered where all your Codex tokens went? 🤔 This local neon dashboard reads the Codex history already on your computer and turns it into totals, charts, and project breakdowns. No cloud dashboard, no sign-up page, and your session files never leave your machine. Just your numbers, glowing in green. 💚
 
-| Feature | Description |
-|---|---|
-| 🔵 **Codex Tracking** | Track supported local Codex sessions and available account lifetime usage. |
-| 🟠 **Claude Code Tracking** | Monitor supported Claude Code token usage from available local session records. |
-| 🟢 **Ollama Tracking** | Include token usage captured through compatible local Ollama adapters. |
-| 🧮 **Grand Total** | See combined, deduplicated usage across all three providers. |
-| 📊 **Model Proportion** | Discover which AI models consume the most recorded tokens. |
-| 📈 **Usage Over Time** | Visualize activity and compare usage across different periods. |
-| 🍩 **Usage Comparison** | See how your usage is distributed between supported providers. |
-| 📂 **Recent Sessions** | Explore recorded sessions, projects, models, and usage details. |
-| 💰 **Estimated API Costs** | See approximate API-equivalent usage costs where sufficient data exists. |
-| 🖥️ **Native Windows App** | Run the HUD in its own desktop window without opening a browser. |
-| 🔐 **Local Usage Database** | Preserve supported usage records locally for viewing and analysis. |
-| ⚡ **Responsive Dashboard** | A futuristic interface that adapts to different window sizes. |
+## ✨ What It Does
 
-Some features depend on the software installed on your computer and the records available from each provider.
+- 📈 **Token totals** for today, your history, and daily averages, with cache hit rate.
+- 💵 **Estimated cost** in US dollars, with a ¥ reference figure.
+- 🗓️ **One-week usage view** so you can see the spikes.
+- 🏆 **Top 3 projects** ranked by total token use.
+- 🧠 **Model proportion** showing which models you use most.
+- ⭐ **Highlights** such as your highest-cost day, peak output day, and best cache session.
+- 🦙 **Local Ollama totals** when the Qwen/Ollama adapter is installed.
+- 🪟 **Desktop window** for the packaged app, so it does not live in a browser tab.
 
----
+## 🧮 How Codex Tracking Works
 
-## 🛠️ Meet Your New Token Dashboard
+1. The HUD reads the Codex session files in `~/.codex/sessions` and `archived_sessions` (JSONL).
+2. It adds up each turn's `last_token_usage` delta. Cumulative `total_token_usage` totals are never added on top, so nothing is counted twice.
+3. Duplicate Codex response IDs are counted once.
+4. The **combined total** is your online ChatGPT Codex account lifetime summary (when available) plus local Ollama tokens.
+5. Codex session history still shows project and model details, but it is not added to the combined total, because those GPT sessions are already part of the account count.
 
-### 🔵 OpenAI Codex
+Point the HUD at a different Codex folder with the `AERU_CODEX_DIR` environment variable (see the Paths section below).
 
-Codex can generate an incredible amount of token activity when you're building applications, troubleshooting code, or working across multiple projects.
+## 🚀 Installation
 
-Aerus AI Usage HUD helps you see the bigger picture.
+This repository does not include a prebuilt installer. Choose one of the two methods below.
 
-- Local Codex session history
-- Available account lifetime usage
-- Recorded input and output tokens
-- Cache-related usage where available
-- Model and project information
-- Usage trends over time
+### Option 1: Run from the folder (any Windows PC)
 
-When supported, the HUD can reconcile account lifetime totals with locally recorded sessions.
+1. Install **Node.js 18 or newer** from https://nodejs.org.
+2. Double-click **`Start Dashboard.bat`** in this folder. It starts the local server and opens the dashboard.
 
-**Important:** Account-only usage may not include individual session, model, or daily information. The HUD keeps that usage separate from detailed model breakdowns rather than inventing missing data.
+Or, from a terminal in this folder:
 
-### 🟠 Claude Code
+```bash
+npm start
+```
 
-Using Claude Code alongside Codex?
+This opens `http://127.0.0.1:8787`. If that port is busy, the next free port up to +9 is used.
 
-Now you can see supported Claude Code usage without having to switch dashboards.
+```bash
+npm start -- --no-open
+npm start -- --sample
+```
 
-- Recorded Claude Code sessions
-- Model usage information
-- Input and output tokens
-- Cache usage where available
-- Recent activity and project details
-- Contribution to your combined grand total
+`--no-open` starts the server without opening a browser. `--sample` shows the reference layout, even when your Codex folders are empty.
 
-Claude Code tracking uses supported local session records. It does not automatically include all conversations from Claude's website or desktop chat application.
+### Option 2: Desktop app (Windows, native window)
 
-### 🟢 Ollama
+The desktop shell lives in `desktop-shell/`. From the project root, build the packaged app with:
 
-Running your own AI models locally? Hell yeah. 🤖
+```bash
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\desktop-shell\Build-Desktop.ps1
+```
 
-Aerus AI Usage HUD also supports token tracking through compatible Ollama capture adapters.
+The packaged folder `dist-desktop/` is generated locally by that script and is not stored in this repository.
 
-- Supported local model usage
-- Captured input and output token counts
-- Model identification when recorded
-- Usage comparisons alongside Codex and Claude
-- Separate Ollama totals
+- Run `dist-desktop\CODEX Monitor.exe` directly, or
+- Double-click `Setup-CODEX-Monitor.cmd` inside that folder to install for your Windows user, with Desktop and Start Menu shortcuts.
+- To remove an installed copy, run `Uninstall-CODEX-Monitor.ps1` from the installed folder. It removes the app files and shortcuts, and leaves your `.codex` folder alone.
 
-**Note:** Ollama tracking currently depends on supported usage captures. It does not automatically monitor every Ollama application or request on your computer.
+### Requirements
 
----
+- **Windows** (the desktop app and the installer scripts are Windows-only).
+- **Node.js 18+** for Option 1. The desktop package carries its own Node runtime.
+- **Microsoft Edge WebView2 Runtime** for the desktop app. Windows 11 normally includes it; on Windows 10 install it once from Microsoft.
+- **Optional:** the Codex CLI, signed in with ChatGPT, for the online account summary.
+- **Optional:** the local Qwen/Ollama adapter, for local Ollama totals.
 
-## 📊 Model Proportion — Who's Eating All the Tokens?
+## 🛠️ Paths
 
-This is where things get interesting. 😂
+```powershell
+# Windows PowerShell
+$env:AERU_CODEX_DIR = "$env:USERPROFILE\.codex"
+```
 
-The **Model Proportion** chart ranks your recorded AI models by total token usage.
+```bash
+# macOS / Linux
+AERU_CODEX_DIR="$HOME/.codex" npm start
+```
 
-Whether you're switching between Codex models, experimenting with Claude, or testing local Ollama models, you can see which ones account for the most recorded activity.
+## 🔐 Privacy and Local Data
 
-Features include:
-
-- 🌈 Color-coded model bars
-- 🏆 Rankings based on recorded token usage
-- 🔵 Codex model comparisons
-- 🟠 Claude Code model comparisons
-- 🟢 Ollama model comparisons
-- 📅 Usage filtering across supported time ranges
-- 📊 Grouping of additional models when necessary
-
-Models beyond the displayed top rankings can be grouped into an **Other** category.
-
-Account-only tokens without a known model are not falsely assigned to an individual model.
-
-**Real numbers. No imaginary tokens. No intentional double counting.**
-
----
-
-## 📅 Track Your Usage Over Time
-
-Sometimes you just want to know how much damage you've done today. 😂
-
-The dashboard includes convenient filters:
-
-| Filter | What It Shows |
-|---|---|
-| ☀️ **Today** | Recorded activity for the selected day. |
-| 📆 **7 Days** | Recent usage across the last seven days. |
-| 📈 **30 Days** | A broader view of recorded usage trends. |
-| ♾️ **All Time** | Available lifetime usage, including supported account-level totals. |
-
-Charts and detailed histories reflect the information actually available for the selected range.
-
-Some account-only lifetime usage cannot be assigned to a specific date and may appear only in **All Time** totals.
-
----
-
-## 💰 What Would All Those Tokens Cost?
-
-Ever look at your token usage and wonder what the equivalent API bill might look like?
-
-Aerus AI Usage HUD includes **estimated API-equivalent costs** for supported models and recorded activity.
-
-These estimates are provided for educational and analytical purposes.
-
-**They are NOT your actual subscription bill.**
-
-- ChatGPT subscriptions are not necessarily billed per token.
-- Claude subscriptions may have different billing arrangements.
-- Actual API costs depend on provider pricing and model usage.
-- Unattributed account-only usage may not have enough detail for pricing.
-- Local Ollama inference normally has no model-provider API charge, but hardware and electricity still cost money.
-
-It's a useful comparison—not an invoice. 💸
-
----
-
-## 📦 Download & Installation
-
-### 🚀 Latest Official Release — v1.0.1
-
-**Windows Installer:**
-
-`AerusAIUsageHUD-Setup-v1.0.1.exe`
-
-### How to Install
-
-1. 📥 Download **AerusAIUsageHUD-Setup-v1.0.1.exe** from the official GitHub release.
-2. 🖱️ Double-click the installer.
-3. ⚙️ Follow the Windows setup instructions.
-4. 💻 Launch **Aerus AI Usage HUD** from your Desktop or Start Menu.
-5. 📊 Start exploring your available AI usage!
-
-**THAT'S IT!** 🎉
-
-No manually installing Node.js, running npm commands, or opening a development server.
-
-The standalone installer bundles the application's required runtime components. Windows WebView2 is also required and may need to be installed if it isn't already available.
-
-For more advanced tracking, the corresponding AI tools and supported usage records must already exist on your computer.
-
-### ⚠️ Windows Security Notice
-
-Aerus AI Usage HUD is independently developed and currently distributed without a code-signing certificate.
-
-Windows may display an unknown-publisher or SmartScreen warning.
-
-Only run installers obtained from a source you trust. Do not disable Windows security protections to install the application.
-
----
-
-## 🧠 How Token Tracking Works
-
-Not every AI provider records usage the same way.
-
-Some provide session-level information, some provide cumulative counters, and others expose account lifetime totals.
-
-Aerus AI Usage HUD brings together supported information while accounting for possible overlap between sources.
-
-For example:
-
-- **Codex:** Supported session records and available account lifetime totals.
-- **Claude Code:** Supported local session and model usage records.
-- **Ollama:** Supported token captures from compatible adapters.
-
-### Why Some Numbers May Differ
-
-Your local session history might contain fewer tokens than an account-wide lifetime total.
-
-That's because account-level usage can include activity not available in the local records.
-
-Rather than pretending that missing information belongs to a particular model or session, the HUD distinguishes attributable usage from usage without those details.
-
-**The goal is accurate tracking—not artificially inflated numbers.**
-
----
-
-## 🔐 Privacy & Local Operation
-
-Aerus AI Usage HUD is designed around a local Windows desktop experience.
-
-- 🔒 Personal usage histories are not bundled into the public installer.
-- 💾 Supported records and application history are stored locally.
-- 🖥️ The dashboard can display supported locally available data without an external browser.
-- 🌐 Optional account usage lookups may require an internet connection and authentication through the supported provider.
-- 🔑 The application does not unlock paid AI services or provide additional AI credits.
-- 📊 Usage coverage depends on supported providers and accessible records.
-
-Some local AI capture files may contain conversation or model-response content. Treat your usage directories and backups as private.
-
-Aerus AI Usage HUD is an independent analytics application, not an official replacement for provider usage or billing reports.
-
----
+- 🏠 **Local only.** The server listens on `127.0.0.1` only. It is not reachable from other computers on your network.
+- 📂 **Your files stay put.** Session files, Ollama adapter captures and prompts are read on your computer and are not uploaded by this app. From adapter captures, the HUD reads only numeric usage fields and model identifiers.
+- 🔑 **No credential access.** This app does not read or copy Codex credentials. For the optional account summary, it asks the local Codex app-server (`account/usage/read`), and the app-server uses your existing Codex sign-in.
+- 🪟 **Locked-down desktop window.** The desktop app only loads pages from `127.0.0.1`.
+- 🙈 **Repository hygiene.** `.gitignore` excludes Codex session folders, JSONL files, and database files.
+- 📸 **Screenshots show your numbers.** Before you share a screenshot of the dashboard, remember it shows your real usage figures and project names.
 
 ## ⚠️ Known Limitations
 
-AI software evolves constantly, and usage tracking isn't always straightforward.
+- 💲 **Costs are estimates**, based on public API list prices checked in October 2026. They are not your ChatGPT subscription invoice.
+- 🧩 **Claude Code usage is not tracked** by this HUD. It covers Codex and local Ollama.
+- 🧪 **Unknown models** use a fallback rate of $2 input, $0.20 cached input, and $8 output per million tokens.
+- 🔏 **Not code-signed.** The packaged desktop app is unsigned, so Windows may show a security warning. Only run it from a source you trust.
+- 🏷️ **Version metadata.** The desktop shell's project file still carries version 1.0.0 while this release is 0.2.0. It will be aligned in the next package.
+- 🪙 **The ¥ figure** is a fixed reference (CNY 7.20 per USD), not a live exchange rate.
 
-Current limitations include:
+## 🐛 Feedback and Bug Reports
 
-- Some account lifetime usage lacks individual model or session information.
-- Claude.ai website and desktop chat conversations aren't automatically included in Claude Code tracking.
-- Ollama tracking requires compatible capture records.
-- Provider log formats and supported account interfaces may change.
-- Some models cannot be priced accurately without additional usage details.
-- A completely clean Windows installation may require the WebView2 runtime.
-- The Windows installer is currently unsigned.
+Found a bug, or have an idea?
 
-These limitations may change as development continues.
+Open an issue in this repository and include:
 
----
+- Your Windows version and Node.js version (if you used Option 1)
+- The steps that lead to the problem
+- Whether you used `--sample` or your real Codex folder
 
-## 🗺️ What's Next?
+Please do not post session files, prompts, or other personal usage data. 🙏
 
-This project started with one simple question:
+## 📜 License
 
-**"How many damn tokens have I used?"** 😂
+This project is released under the **MIT License**. See [LICENSE](LICENSE) for the full text.
 
-What started as a Codex usage counter eventually grew into a multi-provider analytics dashboard.
+Copyright (c) 2026 AERU.
 
-And there are always more ideas.
+Bundled third-party components keep their own licences. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for details.
 
-Potential future improvements include:
+## 🙌 Third-Party Branding & Disclaimer
 
-- 📊 More advanced model analytics
-- 🤖 Additional supported AI providers
-- 📈 Expanded charts and statistics
-- 🧠 Better model usage comparisons
-- 💰 More detailed cost-estimation tools
-- ⚡ Continued performance and interface improvements
-- 🛠️ Additional Aeru Creations integrations
+Aeru Codex Usage HUD is an independently developed software project by Aeru Creations.
 
-These are ideas for future development, not guarantees of currently available features.
+Third-party product names, trademarks, logos, and associated branding remain the property of their respective owners.
 
----
+This project is not affiliated with, sponsored by, or endorsed by OpenAI, Microsoft, or any other third-party provider unless expressly stated otherwise.
 
-## 🐛 Feedback & Contributions
+References to Codex and other products identify compatibility or usage-data sources.
 
-Found a bug? Have an idea? Think something could work better?
+The project's MIT License applies only to material covered by that license. Third-party components and assets remain subject to their own terms and permissions.
 
-I appreciate feedback, testing, and constructive suggestions.
+A disclaimer does not itself grant permission to redistribute third-party assets.
 
-Explore the project, report problems, or contribute improvements through GitHub.
+See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the bundled components, their notices, and the open items.
 
-Please avoid uploading private session records, account credentials, personal conversations, or access tokens in public reports.
+## 💜 About Aeru Creations
 
-**Current Release:** `v1.0.1`
+Aeru Creations builds useful software, AI tools, and desktop applications that put more capability and control into the hands of everyday users. 🚀
 
----
+Yes, the dashboard is green. Yes, that is on purpose. 😎
 
-## ⚖️ MIT License & Third-Party Branding
+If this HUD helps you see your tokens clearly, please **star the repository** ⭐
 
-Aerus AI Usage HUD is an independent project developed by **Aeru Creations**.
-
-The project's original code is licensed under the **MIT License**, subject to the terms in the repository's LICENSE file.
-
-MIT permits use, modification, distribution, and commercial use of covered material under its conditions.
-
-### Third-Party Disclaimer
-
-All third-party software names, logos, icons, trademarks, and associated branding remain the property of their respective owners.
-
-Aerus AI Usage HUD is not affiliated with, sponsored by, officially partnered with, or endorsed by OpenAI, Anthropic, Ollama, or other third-party software providers unless explicitly stated otherwise.
-
-References to Codex, Claude Code, Ollama, and other products identify supported software and compatibility.
-
-The project's MIT License does not automatically grant permission to redistribute third-party trademarks, logos, artwork, or separately licensed components.
-
----
-
-## ❤️ Built by Aeru Creations
-
-I'm an independent creator who enjoys experimenting with AI, developing software, solving problems, and turning random ideas into actual working programs.
-
-Sometimes that starts with a simple script.
-
-Other times it turns into an entire Windows application because I couldn't leave the idea alone. 😂
-
-**Aerus AI Usage HUD** is one of those projects.
-
-Built through experimentation, troubleshooting, late nights, lots of testing, and probably more AI tokens than I care to admit.
-
-And honestly?
-
-**That's half the fun of creating things.**
-
-### ⚡ Imagine It. I Produce It.
-
-**Aeru Creations — Software. Technology. Creativity.**
-
-*Made with curiosity, persistence, a little chaos, and a passion for building cool stuff.* 🚀
-
----
-
-**© 2026 Aeru Creations.**
-
-Third-party software and services remain the property of their respective owners and retain their applicable license terms.
+<p align="center"><b>⚡ IMAGINE IT. I PRODUCE IT.</b></p>
