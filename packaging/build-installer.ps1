@@ -60,7 +60,7 @@ Get-ChildItem -LiteralPath $stage -Recurse -File | ForEach-Object {
   if ($_.Name -match '(?i)\.pdb$|\.jsonl$|\.sqlite|\.db$|^\.env|auth\.json|credentials|\.log$|\.tmp$|snapshot|ledger') { $problems += "Forbidden file: $rel" }
   if ($_.Extension -in '.js', '.json', '.html', '.css', '.md', '.txt', '.bat', '.cmd', '.ps1') {
     $text = [IO.File]::ReadAllText($_.FullName)
-    if ($text -match '(?i)C:\\Users\\|C:\\AI-services|killi') { $problems += "Personal or developer path in: $rel" }
+    if ($text -match '(?i)C:\\Users\\|C:\\AI-services' -or ($env:USERNAME -and $text -match [regex]::Escape($env:USERNAME))) { $problems += "Personal or developer path in: $rel" }
   }
 }
 if ($problems.Count -gt 0) { $problems | ForEach-Object { Write-Output $_ }; throw 'Privacy audit failed. The installer was not built.' }
