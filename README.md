@@ -1,4 +1,5 @@
-<img width="1702" height="1375" alt="image" src="https://github.com/user-attachments/assets/2068ee45-4919-4013-8a97-570e50696061" />
+<img width="1686" height="1242" alt="ChatGPT Image Oct 16, 2026, 04_38_30 AM" src="https://github.com/user-attachments/assets/f760f5fa-883b-4b19-b917-f74c9938f0c5" />
+
 
 # ⚡ AERUS AI USAGE HUD
 
